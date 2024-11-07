@@ -17,6 +17,7 @@ bower_components/
 *.tmp
 *.swp
 *.swo
+*.osp
 
 # Environment files
 .env
