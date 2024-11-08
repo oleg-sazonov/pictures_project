@@ -1,12 +1,10 @@
 'use strict';
-import { calcScroll } from "./modals";
 
 // import checkNumInputs from "./checkNumInputs";
 
 const forms = () => {
 	const form = document.querySelectorAll('form'),
-		  upload = document.querySelectorAll('[name="upload"]'),
-		  scroll = calcScroll();
+		  upload = document.querySelectorAll('[name="upload"]');
 
 	// checkNumInputs('input[name="user_phone"]');
 
@@ -53,14 +51,15 @@ const forms = () => {
 			statusMessage.classList.add('status');
 			item.parentNode.append(statusMessage);
 
-			item.classList.add('animated', 'fadeOutUp');
-			setTimeout(() => {
-				item.style.display = 'none';
-			}, 400);
+			// item.classList.add('animated', 'fadeOut');
+			// setTimeout(() => {
+			// 	item.style.display = 'none';
+			// }, 400);
+			item.style.display = 'none';
 
 			let statusImg = document.createElement('img');
 			statusImg.setAttribute('src', message.spinner);
-			statusImg.classList.add('animated', 'fadeInUp');
+			statusImg.classList.add('animated', 'fadeIn');
 			statusMessage.append(statusImg);
 
 			let textMessage = document.createElement('div');
@@ -75,7 +74,6 @@ const forms = () => {
 			postData(api, formData)
 				.then(res => {
 					console.log(res);
-					item.parentNode.style.height = getComputedStyle(item.parentNode).height;
 					statusImg.setAttribute('src', message.ok);
 					textMessage.textContent = message.success;
 				})
@@ -92,12 +90,11 @@ const forms = () => {
 					setTimeout(() => {
 						statusMessage.remove();
 						item.style.display = 'block';
-						item.classList.remove('fadeOutUp');
-						item.parentNode.style.removeProperty('height');
+						item.classList.remove('fadeOut');
 						document.body.style.marginRight = `0px`;
 
 						if (item.classList.contains('calc_form') || item.classList.contains('consultation_form')) {
-							item.classList.add('fadeInUp');	
+							item.classList.add('animated', 'fadeInUp');	
 						}
 						
 						document.querySelectorAll('[data-modal]').forEach(item => {
