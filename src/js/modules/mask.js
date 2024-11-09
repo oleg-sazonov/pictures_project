@@ -18,7 +18,7 @@ const mask = (selector) => {
     };
 
     function createMask(event) {
-        let matrix = '+7 (___) ___ __ __',
+        let matrix = '+38 (___) ___ __ __',
             i = 0,
             def = matrix.replace(/\D/g, ''),
             val = this.value.replace(/\D/g, '');
@@ -32,7 +32,7 @@ const mask = (selector) => {
         });
 
         if (event.type === 'blur') {
-            if (this.value.lenght == 2) {
+            if (this.value.length == 3) {
                 this.value = '';
             }
         } else {

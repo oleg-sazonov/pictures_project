@@ -90,7 +90,7 @@ const forms = () => {
 					setTimeout(() => {
 						statusMessage.remove();
 						item.style.display = 'block';
-						item.classList.remove('fadeOut');
+						// item.classList.remove('fadeOut');
 						document.body.style.marginRight = `0px`;
 
 						if (item.classList.contains('calc_form') || item.classList.contains('consultation_form')) {
