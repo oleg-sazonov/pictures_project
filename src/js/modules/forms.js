@@ -1,34 +1,14 @@
 'use strict';
 
-// import checkNumInputs from "./checkNumInputs";
+import {postData, message} from '../services/requests';
 
 const forms = () => {
 	const form = document.querySelectorAll('form'),
 		  upload = document.querySelectorAll('[name="upload"]');
 
-	// checkNumInputs('input[name="user_phone"]');
-
-	const message = {
-		loading: 'Загрузка...',
-		success: 'Спасибо! Скоро мы с Вами свяжемся!',
-		failure: 'Что-то пошло не так...',
-		spinner: 'assets/img/spinner.gif',
-		ok: 'assets/img/ok.png',
-		fail: 'assets/img/fail.png'
-	};
-
 	const path = {
 		designer: 'assets/server.php',
 		question: 'assets/question.php'
-	};
-
-	const postData = async (url, data) => {
-		let res = await fetch(url, {
-			method: 'POST',
-			body: data
-		});
-
-		return await res.text();
 	};
 
 	upload.forEach(item => {
@@ -51,10 +31,6 @@ const forms = () => {
 			statusMessage.classList.add('status');
 			item.parentNode.append(statusMessage);
 
-			// item.classList.add('animated', 'fadeOut');
-			// setTimeout(() => {
-			// 	item.style.display = 'none';
-			// }, 400);
 			item.style.display = 'none';
 
 			let statusImg = document.createElement('img');
@@ -90,7 +66,6 @@ const forms = () => {
 					setTimeout(() => {
 						statusMessage.remove();
 						item.style.display = 'block';
-						// item.classList.remove('fadeOut');
 						document.body.style.marginRight = `0px`;
 
 						if (item.classList.contains('calc_form') || item.classList.contains('consultation_form')) {
