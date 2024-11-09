@@ -1,16 +1,17 @@
 'use strict';
 
-import { getResource } from "../services/requests";
+import { getResource,handleStatus } from "../services/requests";
 
 const showMoreStyles = (trigger, wrapper) => {
 	const btn = document.querySelector(trigger);
-
 
 	btn.addEventListener('click', () => {
 		getResource('assets/db.json')
 			.then(res => createCards(res.styles))
 			.catch(error => {
 				console.log(error);
+				let statusMessage = handleStatus('error');
+				document.querySelector(wrapper).append(statusMessage);
 			});
 		btn.remove();
 	});

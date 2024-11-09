@@ -1,6 +1,6 @@
 'use strict';
 
-import {postData, message} from '../services/requests';
+import { postData, handleStatus } from '../services/requests';
 
 const forms = () => {
 	const form = document.querySelectorAll('form'),
@@ -27,20 +27,8 @@ const forms = () => {
 		item.addEventListener('submit', e => {
 			e.preventDefault();
 
-			let statusMessage = document.createElement('div');
-			statusMessage.classList.add('status');
-			item.parentNode.append(statusMessage);
-
+			item.parentNode.append(handleStatus('loading'));
 			item.style.display = 'none';
-
-			let statusImg = document.createElement('img');
-			statusImg.setAttribute('src', message.spinner);
-			statusImg.classList.add('animated', 'fadeIn');
-			statusMessage.append(statusImg);
-
-			let textMessage = document.createElement('div');
-			textMessage.textContent = message.loading;
-			statusMessage.append(textMessage);
 
 			const formData = new FormData(item);
 			let api;
@@ -50,12 +38,10 @@ const forms = () => {
 			postData(api, formData)
 				.then(res => {
 					console.log(res);
-					statusImg.setAttribute('src', message.ok);
-					textMessage.textContent = message.success;
+					handleStatus('idle');
 				})
 				.catch(() => {
-					statusImg.setAttribute('src', message.fail);
-					textMessage.textContent = message.failure;
+					handleStatus('error');
 				})
 				.finally(() => {
 					item.reset();
@@ -64,7 +50,7 @@ const forms = () => {
 					});
 
 					setTimeout(() => {
-						statusMessage.remove();
+						handleStatus().remove();
 						item.style.display = 'block';
 						document.body.style.marginRight = `0px`;
 

@@ -9,39 +9,37 @@ const message = {
 	fail: 'assets/img/fail.png'
 };
 
-// let statusMessage = document.createElement('div');
-// statusMessage.classList.add('status');
+let statusMessage = document.createElement('div'),
+	statusImg = document.createElement('img'),
+	textMessage = document.createElement('div');
 
-// let statusImg = document.createElement('img');
-// let textMessage = document.createElement('div');
+statusMessage.classList.add('status');
+statusImg.classList.add('animated', 'fadeIn');
 
-// const handleStatus = status => {
-// 	switch (status) {
-// 		case 'loading':
-// 			statusImg.setAttribute('src', message.spinner);
-// 			textMessage.textContent = message.loading;
-// 			return {
-// 				statusImg,
-// 				textMessage
-// 			}
-// 		case 'idle': 
-// 			statusImg.setAttribute('src', message.ok);
-// 			textMessage.textContent = message.success;
-// 			return {
-// 				statusImg,
-// 				textMessage
-// 			}
-// 		case 'error':
-// 			statusImg.setAttribute('src', message.fail);
-// 			textMessage.textContent = message.failure;
-// 			return {
-// 				statusImg,
-// 				textMessage
-// 			}
-// 		default:
-// 			console.log('Invalid data');
-// 	}
-// };
+const handleStatus = (status = 'loading', selector = statusMessage, img = statusImg, msg = textMessage) => {
+
+	switch (status) {
+		case 'loading':
+			img.setAttribute('src', message.spinner);
+			msg.textContent = message.loading;
+			break;
+		case 'idle': 
+			img.setAttribute('src', message.ok);
+			msg.textContent = message.success;
+			break;
+		case 'error':
+			img.setAttribute('src', message.fail);
+			msg.textContent = message.failure;
+			break;
+		default:
+			console.log('Data has been submitted');
+	}
+
+	selector.append(img);
+	selector.append(msg);
+
+	return selector;
+};
 
 const postData = async (url, data) => {
 	let res = await fetch(url, {
@@ -62,4 +60,4 @@ const getResource = async (url) => {
 	return await res.json();
 };
 
-export {postData, getResource, message};
+export {postData, getResource, handleStatus};
