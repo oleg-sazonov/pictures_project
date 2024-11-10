@@ -31,8 +31,6 @@ const handleStatus = (status = 'loading', selector = statusMessage, img = status
 			img.setAttribute('src', message.fail);
 			msg.textContent = message.failure;
 			break;
-		default:
-			console.log('Data has been submitted');
 	}
 
 	selector.append(img);
