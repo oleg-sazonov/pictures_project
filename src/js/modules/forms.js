@@ -27,10 +27,11 @@ const forms = () => {
 		item.addEventListener('submit', e => {
 			e.preventDefault();
 
+			const formData = new FormData(item);
+
 			item.parentNode.append(handleStatus('loading'));
 			item.style.display = 'none';
 
-			const formData = new FormData(item);
 			let api;
 			item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
 			console.log(api);
@@ -45,6 +46,8 @@ const forms = () => {
 				})
 				.finally(() => {
 					item.reset();
+					document.querySelector('.calc-price').textContent = 'Для расчета нужно выбрать размер картины и материал картины';
+
 					upload.forEach(item => {
 						item.previousElementSibling.textContent = 'Файл не выбран';
 					});
