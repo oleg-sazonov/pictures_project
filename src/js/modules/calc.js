@@ -2,7 +2,7 @@
 
 import { getResource } from "../services/requests";
 
-const calc = (size, material, options, promocode, result) => {
+const calc = (size, material, options, promocode, result, state) => {
 	const sizeBlock = document.querySelector(size),
 		  materialBlock = document.querySelector(material),
 		  optionsBlock = document.querySelector(options),
@@ -54,10 +54,12 @@ const calc = (size, material, options, promocode, result) => {
 		if (sizeBlock.value == '' || materialBlock.value == '') {
 			resultBlock.textContent = 'Пожалуйста, выберите размер и материал картины';
 		} else if (promocodeBlock.value === 'IWANTPOPART') {
-			resultBlock.textContent = Math.round(sum * 0.7);
+			sum = Math.round(sum * 0.7);
+			resultBlock.textContent = sum;
 		} else {
 			resultBlock.textContent = sum; 
 		}
+		state["result"] = sum;
 	};
 
 	getCalcData();

@@ -2,7 +2,7 @@
 
 import { postData, handleStatus } from '../services/requests';
 
-const forms = () => {
+const forms = (state) => {
 	const form = document.querySelectorAll('form'),
 		  upload = document.querySelectorAll('[name="upload"]');
 
@@ -28,6 +28,15 @@ const forms = () => {
 			e.preventDefault();
 
 			const formData = new FormData(item);
+			if (item.classList.contains('calc_form')) {
+				for (let key in state) {
+					formData.append(key, state[key]);
+				}
+			}
+
+			for (let pair of formData.entries()) {
+				console.log(pair[0], pair[1]);
+			};
 
 			item.parentNode.append(handleStatus('loading'));
 			item.style.display = 'none';
@@ -40,6 +49,8 @@ const forms = () => {
 				.then(res => {
 					console.log(res);
 					handleStatus('idle');
+					
+					console.log(state.result);
 				})
 				.catch(() => {
 					handleStatus('error');

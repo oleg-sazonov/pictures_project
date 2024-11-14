@@ -10,13 +10,15 @@ import sliders from './modules/sliders';
 
 window.addEventListener('DOMContentLoaded', () => {
 
+	let calcState = {};
+
 	modals();
 	sliders('.feedback-slider-item', 'horizontal', '.main-prev-btn', '.main-next-btn');
 	sliders('.main-slider-item', 'vertical', '', '');
-	forms();
+	calc('#size', '#material', '#options', '.promocode', '.calc-price', calcState);
 	mask('[name="phone"]');
 	checkTextInputs('[name="name"]');
 	checkTextInputs('[name="message"]');
 	showMoreStyles('.button-styles', '#styles .row');
-	calc('#size', '#material', '#options', '.promocode', '.calc-price')
+	forms(calcState);
 });
