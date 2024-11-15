@@ -18,9 +18,9 @@ const calc = (size, material, options, promocode, result, state) => {
 				const materialData = data.material;
 				const optionsData = data.options;
 
-				console.log('Size:', sizeData);
-				console.log('Material:', materialData);
-				console.log('Options:', optionsData);
+				// console.log('Size:', sizeData);
+				// console.log('Material:', materialData);
+				// console.log('Options:', optionsData);
 
 				populateSelect(sizeBlock, sizeData, 'Выберите размер картины');
 				populateSelect(materialBlock, materialData, 'Выберите материал картины');

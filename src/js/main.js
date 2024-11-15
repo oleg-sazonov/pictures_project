@@ -1,5 +1,6 @@
 'use strict';
 
+import filter from './modules/filter';
 import calc from './modules/calc';
 import checkTextInputs from './modules/checkTextInputs';
 import forms from './modules/forms';
@@ -21,4 +22,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	checkTextInputs('[name="message"]');
 	showMoreStyles('.button-styles', '#styles .row');
 	forms(calcState);
+	filter();
 });
