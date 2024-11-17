@@ -9,6 +9,7 @@ import modals from './modules/modals';
 import showMoreStyles from './modules/showMoreStyles';
 import sliders from './modules/sliders';
 import pictureSize from './modules/pictureSize';
+import accordion from './modules/accordion';
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -25,4 +26,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	forms(calcState);
 	filter();
 	pictureSize('.sizes-block');
+	accordion('.accordion-heading');
 });
