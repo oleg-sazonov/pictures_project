@@ -10,6 +10,7 @@ import showMoreStyles from './modules/showMoreStyles';
 import sliders from './modules/sliders';
 import pictureSize from './modules/pictureSize';
 import accordion from './modules/accordion';
+import burger from './modules/burger';
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -27,4 +28,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	filter();
 	pictureSize('.sizes-block');
 	accordion('.accordion-heading');
+	burger('.burger-menu', '.burger');
 });
