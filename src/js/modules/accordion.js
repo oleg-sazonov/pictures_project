@@ -4,42 +4,30 @@ const accordion = (triggersSelector) => {
 	const btns = document.querySelectorAll(triggersSelector);
 
 	btns.forEach(btn => {
-		btn.addEventListener('click', function() {
+		btn.addEventListener('click', e => {
+
+			let target = e.currentTarget;
+			let blockElem = target.nextElementSibling;
 
 			//Hide every .accordion-block exluded active one
 			btns.forEach(btn => {
-				if (btn !== this) {
+				if (btn !== target) {
 					btn.classList.remove('active-style');
 					btn.nextElementSibling.classList.remove('active-content');
 					btn.nextElementSibling.style.maxHeight = '0px';
 				}
 			});
 
-			let blockElem = this.nextElementSibling;
-			this.classList.toggle('active-style');
+			target.classList.toggle('active-style');
 			blockElem.classList.toggle('active-content');
 
-			if (this.classList.contains('active-style')) {
+			if (target.classList.contains('active-style')) {
 				blockElem.style.maxHeight = blockElem.scrollHeight + 80 + 'px';
 			} else {
 				blockElem.style.maxHeight = '0px';
 			};
 		});
 	});
-		//   blocks = document.querySelectorAll(itemsSelector);
-
-	// blocks.forEach(block => block.classList.add('animated', 'fadeInUp'));
-
-	// btns.forEach(btn => {
-	// 	btn.addEventListener('click', function() {
-	// 		if (this.classList.contains('active')) {
-	// 			this.classList.remove('active', 'active-style');
-	// 		} else {
-	// 			btns.forEach(btn => btn.classList.remove('active', 'active-style'));
-	// 		}
-	// 		this.classList.add('active', 'active-style');
-	// 	});
-	// });
 };
 
 export default accordion;
