@@ -11,6 +11,7 @@ import sliders from './modules/sliders';
 import pictureSize from './modules/pictureSize';
 import accordion from './modules/accordion';
 import burger from './modules/burger';
+import scrolling from './modules/scrolling';
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -29,4 +30,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	pictureSize('.sizes-block');
 	accordion('.accordion-heading');
 	burger('.burger-menu', '.burger');
+	scrolling('.pageup');
 });
