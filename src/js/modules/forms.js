@@ -1,6 +1,7 @@
 'use strict';
 
 import { postData, handleStatus } from '../services/requests';
+import updateUploadTextContent from '../services/updateUploadTextContent';
 
 const forms = (state) => {
 	const form = document.querySelectorAll('form'),
@@ -14,12 +15,8 @@ const forms = (state) => {
 	upload.forEach(item => {
 		item.addEventListener('input', () => {
 			console.log(item.files[0]);
-			let dots;
-			const arr = item.files[0].name.split('.');
 
-			arr[0].length > 5 ? dots = '...' : dots = '.';
-			const name = arr[0].substring(0, 6) + dots + arr[1];
-			item.previousElementSibling.textContent = name;
+			updateUploadTextContent(item);
 		});
 	});
 
